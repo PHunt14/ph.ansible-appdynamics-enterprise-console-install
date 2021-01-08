@@ -1,0 +1,21 @@
+---
+
+- name: validate the virtual hardware configurations
+  block:
+  
+  - name: check that there is at least 2 CPU
+    assert:
+      that: "{{ ansible_processor_count }} >= 2"
+
+  - name: check that there is at least 3GB of RAM
+    assert:
+      that: "{{ ansible_memory_mb.real.total }} >= 3000"
+  
+  rescue:
+  
+  - debug:
+      msg: Server does not meet the requirements, please correct and re-run the play.
+      
+  - meta: end_play
+
+...

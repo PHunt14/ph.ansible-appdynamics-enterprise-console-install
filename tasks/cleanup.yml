@@ -1,0 +1,13 @@
+---
+
+- name: delete the response file
+  file:
+    path: "{{ shared_installer_directory }}/{{ responsefile_name }}"
+    state: absent
+
+- name: unmount the installers
+  mount:
+    path: /mnt/nfs/installers
+    state: unmounted
+
+...

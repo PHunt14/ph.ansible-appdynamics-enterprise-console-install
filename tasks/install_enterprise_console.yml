@@ -1,0 +1,7 @@
+---
+
+- name: install the enterprise console
+  shell: "{{ shared_installer_directory }}/{{ enterprise_console_script }} -q -varfile {{ shared_installer_directory }}/{{ responsefile_name }}"
+  become: false
+
+...

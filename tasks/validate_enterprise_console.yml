@@ -1,0 +1,15 @@
+---
+
+- name: check the Enterprise Console port
+  wait_for:
+    port: 9191
+    delay: 10
+    
+- name: check for the UI
+  uri:
+    url: https://{{ enterprise_console_host }}:{{ enterprise_console_main_port }}
+    validate_certs: false
+  delegate_to: localhost
+  become: false
+
+...

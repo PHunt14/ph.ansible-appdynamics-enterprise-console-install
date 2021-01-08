@@ -1,0 +1,12 @@
+serverHostName={{ enterprise_console_host }}
+sys.languageId=en
+disableEULA=true 
+
+platformAdmin.port={{ enterprise_console_main_port }}
+platformAdmin.databasePort={{ enterprise_console_database_port }}
+platformAdmin.dataDir={{ enterprise_console_data_directory }}
+platformAdmin.databasePassword={{ enterprise_console_DB_password }}
+platformAdmin.databaseRootPassword={{ enterprise_console_DBroot_password }}
+platformAdmin.adminPassword={{ enterprise_console_root_password }}
+platformAdmin.useHttps$Boolean=true
+sys.installationDir={{ enterprise_console_installation_directory }}

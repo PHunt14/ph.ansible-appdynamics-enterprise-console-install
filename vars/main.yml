@@ -1,0 +1,50 @@
+---
+
+# storage
+shared_installer_directory:
+nfs_share: 
+
+# responsefile variables
+responsefile_name: EC-responsefile.varfile
+enterprise_console_installation_directory: /opt/appdynamics/platform
+enterprise_console_host: "{{ inventory_hostname }}"
+enterprise_console_main_port: 9191
+enterprise_console_database_port: 3388
+enterprise_console_data_directory: "{{ enterprise_console_installation_directory }}/mysql/data"
+enterprise_console_DB_password: "changeme"
+enterprise_console_DBroot_password: "changeme"
+enterprise_console_root_password: "changeme"
+
+# script variables
+enterprise_console_script: platform-setup-x64-linux-{{ version }}.sh
+version: 4.5.16.21279
+
+# certificate variables
+privatekey_file:
+certificate_file:
+intermediate_chain_certificate_file:
+root_chain_certificate_file:
+
+
+
+
+
+
+
+
+
+
+
+### DEPRECATED ###
+#private_key_path: 
+#private_key_file: 
+#intermediate_ca: 
+#csr_path: 
+#csr_file: 
+#admin_email: phunt@aemcorp.com
+#certificate_path: 
+#certificate_file: 
+#intermediate_ca_cert: /root/.dogtag/pki-tomcat/ca_admin.cert
+#intermediate_ca_privatekey: /etc/pki/consumer/key.pem
+
+...

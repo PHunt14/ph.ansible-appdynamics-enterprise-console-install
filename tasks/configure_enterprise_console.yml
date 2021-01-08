@@ -1,0 +1,35 @@
+---
+
+- name: create certificate directory
+  file:
+    path: "{{ enterprise_console_installation_directory }}/certs"
+    state: directory
+    owner: appdyn
+    group: appdyn
+
+- name: copy certificate and key to the EC server
+  copy:
+    src: "{{ shared_installer_directory }}/{{ item }}"
+    dest: "{{ enterprise_console_installation_directory }}/certs"
+    remote_src: true
+    owner: appdyn
+    group: appdyn
+  with_items:
+    - "{{ certificate_file }}"
+    - "{{ privatekey_file }}"
+    - "{{ root_chain_certificate_file }}"
+    - "{{ intermediate_chain_certificate_file }}"
+
+- name: replace self-signed certificate
+  shell: "{{ enterprise_console_installation_directory}}/platform-admin/bin/platform-admin.sh update-certificate --private-key {{ enterprise_console_installation_directory }}/certs/{{ privatekey_file }} --ssl-cert {{ enterprise_console_installation_directory }}/certs/{{ certificate_file }} --ssl-chain {{ enterprise_console_installation_directory }}/certs/{{ root_chain_certificate_file }} {{ enterprise_console_installation_directory }}/certs/{{ intermediate_chain_certificate_file }}"
+  become: false
+
+- name: stop enterprise console
+  shell: "{{ enterprise_console_installation_directory}}/platform-admin/bin/platform-admin.sh stop-platform-admin"
+  become: false
+
+- name: start enterprise console
+  shell: "{{ enterprise_console_installation_directory}}/platform-admin/bin/platform-admin.sh start-platform-admin"
+  become: false
+
+...

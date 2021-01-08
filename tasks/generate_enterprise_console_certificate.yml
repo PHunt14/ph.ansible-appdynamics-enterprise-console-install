@@ -1,0 +1,27 @@
+---
+
+- name: generate Private Key
+  openssl_privatekey:
+    path: "{{ private_key_path }}/{{ private_key_file }}"
+  delegate_to: "{{ intermediate_ca }}"
+
+- name: generate CSR with Private Key
+  openssl_csr:
+    path: "{{ csr_path }}/{{ csr_file }}"
+    privatekey_path: "{{ private_key_path }}/{{ private_key_file }}"
+    country_name: US
+    organization_name: eMH
+    email_address: "{{ admin_email }}"
+    common_name: "{{ enterprise_console_host }}"
+  delegate_to: "{{ intermediate_ca }}"
+
+- name: generate Certificate from CSR
+  openssl_certificate:
+    path: "{{ certificate_path }}/{{ certificate_file }}"
+    csr_path: "{{ csr_path }}/{{ csr_file }}"
+    ownca_path: "{{ intermediate_ca_cert }}"
+    ownca_privatekey_path: "{{ intermediate_ca_privatekey }}"
+    provider: ownca
+  delegate_to: "{{ intermediate_ca }}"
+
+...

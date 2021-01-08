@@ -1,0 +1,33 @@
+---
+
+- name: ensure the VM meets the requirements
+  include: validate_enterprise_console_requirements.yml
+
+#- name: acquire certificate for Enterprise Console HTTPS
+#  include: generate_enterprise_console_certificate.yml
+
+- name: ensure storage is attached
+  include: attach_storage.yml
+
+- name: ensure the installation file exists in storage
+  include: validate_enterprise_console_installer.yml
+  
+- name: generate the response file
+  include: generate_responsefile.yml
+
+- name: install required packages
+  include: install_required_packages.yml
+
+- name: run the installation with the response file
+  include: install_enterprise_console.yml
+
+- name: configure enterprise console to use signed certificate
+  include: configure_enterprise_console.yml
+
+- name: verify the Enterprise Console is running
+  include: validate_enterprise_console.yml
+
+- name: clean up the response file
+  include: cleanup.yml
+
+...
