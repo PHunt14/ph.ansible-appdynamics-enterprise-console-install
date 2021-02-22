@@ -1,0 +1,15 @@
+---
+
+- name: check the appdynamics download page
+  uri:
+    url: https://download.appdynamics.com/download/downloadfilelatest/
+    return_content: true
+  #debug:
+    #msg: "{{ item }}"
+  #loop: "{{ lookup('url', 'https://download.appdynamics.com/download/downloadfilelatest/', splitlines=true) }}"
+  register: download_output
+
+- debug:
+    var: download_output['content']
+
+...
