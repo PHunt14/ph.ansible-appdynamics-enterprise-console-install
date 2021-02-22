@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+
+  tasks:
+
+  - name: include the  test  play
+    include: ../tasks/prelim.yml
+
+...
