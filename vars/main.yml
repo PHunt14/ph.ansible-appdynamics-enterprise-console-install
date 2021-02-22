@@ -20,6 +20,20 @@
 # libtinfo.so
 # rsync required for HA Controller pairs
 
+## AppDynamics Download Credentials ##
+  # Store in ansible-vault
+appdynamics_domain_username: "test-test@test.com"
+appdynamics_domain_password: "f@K3P@$$w0rd!"
+
+## Version info ##
+
+current_version: 20.11
+
+
+
+
+
+
 # storage
 shared_installer_directory:
 nfs_share: 

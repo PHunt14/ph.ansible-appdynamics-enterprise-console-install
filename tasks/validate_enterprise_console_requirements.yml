@@ -7,9 +7,10 @@
     assert:
       that: "{{ ansible_processor_count }} >= 2"
 
+# 1 GB of RAM
   - name: check that there is at least 3GB of RAM
     assert:
-      that: "{{ ansible_memory_mb.real.total }} >= 3000"
+      that: "{{ ansible_memory_mb.real.total }} >= 3072"
   
   rescue:
   
@@ -17,5 +18,7 @@
       msg: Server does not meet the requirements, please correct and re-run the play.
       
   - meta: end_play
+
+#- name: ensure  SFTP and SSH ports are open
 
 ...
