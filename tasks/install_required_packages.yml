@@ -1,15 +1,27 @@
 ---
 
+# SSH & SFTP open
+# cURL
+# glibc
+# tzdata
+# libncurses5 for Ubuntu CentOS, openSUSE, Amazon Linux2
+# ncurses-libs-5.x for RHEL/CentOS
+# libtinfo.so
+# rsync required for HA Controller pairs
+
 - name: ensure packages required for the Enterprise Console are present
-  yum:
+  package:
     name:  "{{ item }}"
-    state: latest
-    disable_gpg_check: true
+    state: present
   with_items:
     - libaio
     - numactl
     - tzdata
     - ncurses-libs-5*
     - curl
+    - glibc
+    - libtinfo.so
+
+- name: if HA Controllers will be used, install rsync as well
 
 ...
